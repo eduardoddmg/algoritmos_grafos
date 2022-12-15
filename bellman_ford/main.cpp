@@ -15,6 +15,7 @@ typedef struct {
 vector<edge> e;
 
 void bellman_ford(int n, int m, int src, int final) {
+    ofstream File(string("output.dat"));
     src--;
     final--;
     veci d(n, 99999);
@@ -27,9 +28,12 @@ void bellman_ford(int n, int m, int src, int final) {
         }
     for (int i = 0; i < n; i++) {
         cout << i+1  << ":" << d[i] << " ";
+        File << i+1  << ":" << d[i] << " ";
     }
     cout << endl;
+    File << endl;
     cout << "distancia de " << src+1 << " ate " << final+1 << " eh " << d[final] << endl;
+    File << "distancia de " << src+1 << " ate " << final+1 << " eh " << d[final] << endl;
 }
 
 

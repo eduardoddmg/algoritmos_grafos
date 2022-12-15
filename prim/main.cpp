@@ -1,52 +1,80 @@
-#include<bits/stdc++.h>
+#include <fstream>
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
 
 #define veci vector<int>
 #define vecb vector<bool>
 
-using namespace std;
+typedef pair<int, int> weight_pair;
 
-struct Edge {
-    int w = 99999, to = -1;
-};
+typedef struct Graph {
+    int n;
+    vector<pair<int, int> >* adj;
+} graph_st;
 
-void prim(vector<vector<int>> adj, int n) {
-    int total_weight = 0;
-    vecb selected(n, false);
-    vector<Edge> min_e(n);
-    min_e[0].w = 0;
+void prim(int src, graph_st g) {
+    ofstream File(string("output.dat"));
+    priority_queue<weight_pair, vector<weight_pair>, greater<weight_pair> > pq;
 
-    for (int i=0; i<n; ++i) {
-        int v = -1;
-        for (int j = 0; j < n; ++j) {
-            if (!selected[j] && (v == -1 || min_e[j].w < min_e[v].w))
-                v = j;
-        }
+    int n = g.n;
 
-        if (min_e[v].w == 99999) {
-            cout << "No MST!" << endl;
-            exit(0);
-        }
+    vecb in_tree(n, false); veci v_dad(n, -1); veci v_weight(n, 99999);
 
-        selected[v] = true;
-        total_weight += min_e[v].w;
-        if (min_e[v].to != -1)
-        cout << "(" << min_e[v].to + 1 << "," << v + 1 << ") ";
+    v_weight[src] = 0;
+    pq.push(make_pair(0, src));
 
-        for (int to = 0; to < n; ++to) {
-            if (adj[v][to] < min_e[to].w)
-                min_e[to] = {adj[v][to], v};
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+
+        if(in_tree[u] == true)
+            continue;
+
+        in_tree[u] = true;
+
+        vector<pair<int, int>>::iterator i;
+        for (i = g.adj[u].begin(); i != g.adj[u].end(); i++)
+        {
+            int v = (*i).first;
+            int w = (*i).second;
+ 
+            if (in_tree[v] == false)
+            {
+                if (v_weight[v] > w)
+                {
+                    v_weight[v] = w;
+                    v_dad[v] = u;
+                    pq.push(make_pair(v_weight[v], v));
+                }
+            }
         }
     }
-    cout << endl <<"custo total = " << total_weight << endl;
+
+    cout << "Arvore MST: " << endl;
+    File << "Arvore MST: " << endl;
+    for (int i = 1; i < n; i++) {
+        cout << "(" << v_dad[i]+1 << "," << i+1 << ")" << endl;
+        File << "(" << v_dad[i]+1 << "," << i+1 << ")" << endl;
+    }
+    int total = 0;
+    for (int i = 0; i < v_weight.size(); i++) total += v_weight[i];
+    cout << "custo: " << total << endl;
+    File << "custo: " << total << endl;
+    File.close();
 }
 
-int main(int argc, char *argv[]) {
+int main(void) {
     int n, m; cin >> n >> m;
-    vector <vector<int>> cost (n, vector<int>(n, 9999));
+    graph_st g;
+  	g.n = n;
+  	g.adj = new vector<weight_pair>[n];
     for (int i = 0; i < m; i++) {
         int u, v, w; cin >> u >> v >> w;
-        cost[u-1][v-1] = w;
-        cost[v-1][u-1] = w;
+        g.adj[u-1].push_back(make_pair(v-1, w));
+        g.adj[v-1].push_back(make_pair(u-1, w));
     }
-    prim(cost, n);
+    int i; cin >> i;
+    prim(i-1, g);
 }

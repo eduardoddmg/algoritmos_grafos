@@ -9,6 +9,7 @@
 using namespace std;
 
 void floyd (vector<vector<int>> cost, int n, int src, int final) {
+    ofstream File(string("output.dat"));
     vector <vector<int>> d (n, vector<int>(n, 99999));
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
@@ -25,9 +26,14 @@ void floyd (vector<vector<int>> cost, int n, int src, int final) {
 	}
     for (int i = 0; i < n; i++) {
         cout << i+1  << ":" << d[src][i] << " ";
+        File << i+1  << ":" << d[src][i] << " ";
     }
     cout << endl;
+    File << endl;
     cout << "distancia de " << src+1 << " ate " << final+1 << " eh " << d[src][final] << endl;
+    File << "distancia de " << src+1 << " ate " << final+1 << " eh " << d[src][final] << endl;
+    
+    File.close();
 }
 
 
