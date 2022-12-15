@@ -47,19 +47,17 @@ make run
 
 ## Saída
 
-A saída será composta de uma linha, no formato `´Arvore MST: `. Onde teremos a árvore geradora mínima.
-E também teresmo o custo da árvore
+Primeiro teremos a arvóre geradora, logo após teremos o custo da árvore.
 
 ### Exemplo
 
 A saída para o algoritmo executado sobre o grafo de entrada apresentado no arquivo `output.dat` seria:
 
 ```
-Arvore MST: 
 (4,2)
 (1,3)
 (1,4)
 (3,5)
 (4,6)
-Custo: 14
+14
 ```
