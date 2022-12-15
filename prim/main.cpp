@@ -52,16 +52,14 @@ void prim(int src, graph_st g) {
         }
     }
 
-    cout << "Arvore MST: " << endl;
-    File << "Arvore MST: " << endl;
     for (int i = 1; i < n; i++) {
         cout << "(" << v_dad[i]+1 << "," << i+1 << ")" << endl;
         File << "(" << v_dad[i]+1 << "," << i+1 << ")" << endl;
     }
     int total = 0;
     for (int i = 0; i < v_weight.size(); i++) total += v_weight[i];
-    cout << "custo: " << total << endl;
-    File << "custo: " << total << endl;
+    cout << total << endl;
+    File << total << endl;
     File.close();
 }
 
