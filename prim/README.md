@@ -16,6 +16,8 @@ A segunda linha da entrada deve ser composta por dois inteiros, **s** e **t**. O
 
 Em seguida, **m** linhas, que representam as arestas do grafo, cada uma com três inteiros: **v1**, **v2** e **w**. Onde **v1** e **v2** são os vértices conectados pela aresta e **w** é o peso da aresta.
 
+Na última linha, teremos um inteiro **i** que será o vértice inicial pra rodar o programa
+
 Lembrando que para o algoritmo funcionar corretamente os vérticos devem ser de 1 a n.
 
 Essa entrada pode ser feita interativamente pelo terminal, ou por meio de arquivo de texto.
