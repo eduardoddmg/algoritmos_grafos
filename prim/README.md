@@ -34,6 +34,7 @@ Exemplo contido no arquivo `input.dat`.
 2 5 7
 3 5 6
 4 6 1
+1
 ```
 
 ## Executando
