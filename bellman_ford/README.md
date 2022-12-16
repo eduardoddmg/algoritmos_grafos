@@ -10,9 +10,7 @@ Estamos trabalhando com grafo não direcionado
 
 ## Entrada
 
-A primeira linha da entrada deve ser composta por quatro números inteiros: **n** e **m**, **d**. Onde **n** = número de vértices e **m** = número de arestas.
-
-A segunda linha da entrada deve ser composta por dois inteiros, **s** e **t**. Onde **s** é o vértice de origem e **t** é o vértice de destino.
+A primeira linha da entrada deve ser composta por quatro números inteiros: **n** e **m**. Onde **n** = número de vértices e **m** = número de arestas.
 
 Em seguida, **m** linhas, que representam as arestas do grafo, cada uma com três inteiros: **v1**, **v2** e **w**. Onde **v1** e **v2** são os vértices conectados pela aresta e **w** é o peso da aresta.
 
